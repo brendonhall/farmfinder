@@ -48,7 +48,7 @@ The normalized difference vegetation index (NDVI) is a simple vegatation indicat
 
 The formula to calculate $NDVI$ is:
 
-$$\frac{NIR - R}{NIR + R}$$
+$$NDVI = \frac{NIR - R}{NIR + R}$$
 
 where $R$ and $NIR$ stand for the spectral reflectance measurements acquired in the red (visible) and near-infrared regions, respectively.
 

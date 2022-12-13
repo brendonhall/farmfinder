@@ -29,11 +29,25 @@ NIR = Near Infrared
 R = Red
 
 Band order in given image:
-Band 1: Coastal Blue
-Band 2: Blue
-Band 3: Green I
-Band 4: Green
-Band 5: Yellow
-Band 6: Red
-Band 7: Red Edge
-Band 8: Near Infrared (NIR)
+- Band 1: Coastal Blue
+- Band 2: Blue
+- Band 3: Green I
+- Band 4: Green
+- Band 5: Yellow
+- Band 6: Red
+- Band 7: Red Edge
+- Band 8: Near Infrared (NIR)
+ 
+----------------------
+**NDVI**
+The normalized difference vegetation index (NDVI) is a simple vegatation indicator that can be calculated from satellite imagery.  The measure scales with the presence of live, green vegetation.
+
+- ratio of the difference of the red and infrared radiances over their sum as a means to adjust for or “normalize” the effects of the solar zenith angle.
+- most well-known and used index to detect live green plant canopies in multispectral remote sensing data. 
+-  live green plants appear relatively dark in the PAR and relatively bright in the near-infrared.
+
+$\frac{NIR - R}{NIR + R}$
+where $R$ and $NIR$ stand for the spectral reflectance measurements acquired in the red (visible) and near-infrared regions, respectively.
+
+#### Ideas
+- smoothing with CRF, clean up isolated pixels/holes

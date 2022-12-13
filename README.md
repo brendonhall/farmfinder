@@ -46,7 +46,10 @@ The normalized difference vegetation index (NDVI) is a simple vegatation indicat
 - most well-known and used index to detect live green plant canopies in multispectral remote sensing data. 
 -  live green plants appear relatively dark in the PAR and relatively bright in the near-infrared.
 
-$\frac{NIR - R}{NIR + R}$
+The formula to calculate $NDVI$ is:
+
+$$\frac{NIR - R}{NIR + R}$$
+
 where $R$ and $NIR$ stand for the spectral reflectance measurements acquired in the red (visible) and near-infrared regions, respectively.
 
 #### Ideas

@@ -95,6 +95,7 @@ flycheck_*.el
 # Tagged Image File Format
 *.tiff
 *.tif
+!tests/**/*.tif
 
 # Scalable Vector Graphics
 *.svg

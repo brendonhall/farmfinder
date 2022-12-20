@@ -1,3 +1,6 @@
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/brendonhall/farmfinder)
+[![Code Coverage](https://img.shields.io/codecov/c/github/brendonhall/farmfinder)](https://codecov.io/github/brendonhall/farmfinder)
+
 ### Coding Task
 #### Geospatial Software Engineer
 

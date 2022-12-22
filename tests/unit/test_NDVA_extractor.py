@@ -1,4 +1,4 @@
-# import numpy as np
+import numpy as np
 import logging
 
 import os
@@ -41,3 +41,11 @@ def test_img_read(open_test_img):
 
 def test_ndva_from_values():
     assert ndva_from_values(1, 3) == 0.5
+
+
+def test_ndva_from_vector():
+    red_vec = np.array([1, 1])
+    infred_vec = np.array([3, 3])
+    np.testing.assert_array_equal(
+        ndva_from_values(red_vec, infred_vec), np.array([0.5, 0.5])
+    )

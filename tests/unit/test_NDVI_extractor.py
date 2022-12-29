@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from farmfinder.NDVA_extractor import ndva_from_values
+from fieldfinder.NDVI_extractor import ndva_from_values
 
 
 LOGGER = logging.getLogger(__name__)

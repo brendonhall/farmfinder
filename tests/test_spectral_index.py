@@ -105,8 +105,8 @@ def test_file_constructor_invalid_type():
 def test_file_constructor_invalid_geotiff():
     img_path = _test_data_path / TEST_OUTPUT_GEOTIFF
 
-    with pytest.raises(Exception) as e_info:
-        index = SpectralIndex(img_path)
+    with pytest.raises(Exception):
+        SpectralIndex(img_path)
 
 
 def test_mask_065():

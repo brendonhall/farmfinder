@@ -91,9 +91,7 @@ class SpectralIndex:
         else:
             self.src_filename = src_filename
 
-        self.values, self.src_meta, self.src_bounds = self.calculate_index(
-            src_filename, self.index_type
-        )
+        self.values, self.src_meta, self.src_bounds = self.calculate_index()
 
     def get_mask(self, threshold: float = 0) -> np.ndarray:
         """
@@ -132,47 +130,59 @@ class SpectralIndex:
         :type dst_filename: str
         :param threshold: index value cutoff, defaults to None
         :type threshold: float, optional
-        :param out_proj: CRS to reproject to, defaults to None
+        :param out_proj: CRS to reproject to.  If None, will output to the same
+        CRS as the input image. Defaults to None
         :type out_proj: str, optional
         """
 
         # handle the case were there is no out_proj (don't need to reproject)
 
-        transform, width, height = calculate_default_transform(
-            self.src_meta["crs"],
-            out_proj,
-            self.src_meta["width"],
-            self.src_meta["height"],
-            *self.src_bounds,
-        )
-
         dst_meta = self.src_meta.copy()
 
-        dst_meta.update(
-            {
-                "crs": out_proj,
-                "transform": transform,
-                "width": width,
-                "height": height,
-                "count": 1,
-                "dtype": "uint8",
-                "nodata": 0,
-            }
-        )
-
         masked_index = self.get_mask(threshold)
-
-        with rasterio.open(dst_filename, "w", **dst_meta) as dst:
-
-            reproject(
-                source=masked_index,
-                destination=rasterio.band(dst, 1),
-                src_transform=self.src_meta["transform"],
-                src_crs=self.src_meta["crs"],
-                dst_transform=transform,
-                out_proj=out_proj,
-                resampling=Resampling.nearest,
+        print(f"out_proj: {out_proj}")
+        if out_proj:
+            transform, width, height = calculate_default_transform(
+                self.src_meta["crs"],
+                out_proj,
+                self.src_meta["width"],
+                self.src_meta["height"],
+                *self.src_bounds,
             )
+
+            dst_meta.update(
+                {
+                    "crs": out_proj,
+                    "transform": transform,
+                    "width": width,
+                    "height": height,
+                    "count": 1,
+                    "dtype": "uint8",
+                    "nodata": 0,
+                }
+            )
+
+            with rasterio.open(dst_filename, "w", **dst_meta) as dst:
+
+                reproject(
+                    source=masked_index,
+                    destination=rasterio.band(dst, 1),
+                    src_transform=self.src_meta["transform"],
+                    src_crs=self.src_meta["crs"],
+                    dst_transform=transform,
+                    out_proj=out_proj,
+                    resampling=Resampling.nearest,
+                )
+        else:
+            dst_meta.update(
+                {
+                    "count": 1,
+                    "dtype": "uint8",
+                    "nodata": 0,
+                }
+            )
+            with rasterio.open(dst_filename, "w", **dst_meta) as dst:
+                dst.write(masked_index, 1)
 
     def calculate_index(self) -> Tuple[np.ndarray, dict, tuple]:
         """Private method to read src_geotiff file, extract meta data and

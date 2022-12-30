@@ -69,5 +69,5 @@ def test_is_valid_geotiff():
 def test_invalid_geotiff():
     img_path = _test_data_path / TEST_OUTPUT_GEOTIFF
 
-    with pytest.raises(Exception) as e_info:
-        index = is_valid_geotiff(img_path)
+    with pytest.raises(Exception):
+        is_valid_geotiff(img_path)

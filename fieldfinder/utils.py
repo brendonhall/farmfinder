@@ -1,3 +1,14 @@
+"""
+***************************************************************************
+    constants.py
+    ---------------------
+    Date                 : December 2022
+    Author                : Brendon Hall
+
+Utility and helper functions for field finder module.
+***************************************************************************
+"""
+
 import numpy as np
 
 import rasterio
@@ -24,7 +35,20 @@ def is_valid_geotiff(src_filename: str) -> bool:
     return True
 
 
-def calculate_ndvi(red, nir):
+def calculate_ndvi(red: np.ndarray, nir: np.ndarray) -> np.ndarray:
+    """Calculate ndvi accoring to the formula
+        ndvi = (nir-red) / (nir + red)
+
+    See https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index
+    for reference.
+
+    :param red: 2d numpy array of red image values
+    :type red: np.ndarray
+    :param nir: 2d numpy array of nir image values
+    :type nir: np.ndarray
+    :return: 2d array of calculated ndvi values
+    :rtype: np.ndarray
+    """
 
     # Allow division by zero
     np.seterr(divide="ignore", invalid="ignore")

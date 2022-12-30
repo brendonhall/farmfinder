@@ -98,11 +98,13 @@ def test_file_constructor_values():
 def test_file_constructor_invalid_type():
     img_path = _test_data_path / TEST_INPUT_GEOTIFF
 
-    with pytest.raises(Exception) as e_info:
-        index = SpectralIndex(img_path, index_type="invalid")
+    with pytest.raises(Exception):
+        SpectralIndex(img_path, index_type="invalid")
 
 
 def test_file_constructor_invalid_geotiff():
+
+    # use the one-band output test image to test
     img_path = _test_data_path / TEST_OUTPUT_GEOTIFF
 
     with pytest.raises(Exception):

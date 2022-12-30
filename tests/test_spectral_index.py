@@ -7,6 +7,8 @@ from pathlib import Path
 
 import pytest
 
+import rasterio
+
 from fieldfinder.spectral_index import SpectralIndex
 
 logger = logging.getLogger(__name__)
@@ -68,6 +70,16 @@ ndvi_mask_0_38_test = np.array(
     ]
 )
 
+ndvi_mask_0_65_reproject = np.array(
+    [
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+    ],
+    dtype=np.uint8,
+)
+
 
 def test_file_constructor_type():
     img_path = _test_data_path / TEST_INPUT_GEOTIFF
@@ -93,3 +105,30 @@ def test_mask_036():
     index = SpectralIndex(img_path)
     mask = index.get_mask(threshold=0.38)
     np.testing.assert_array_equal(mask, ndvi_mask_0_38_test)
+
+
+def test_write_mask():
+    img_path = _test_data_path / TEST_INPUT_GEOTIFF
+    index = SpectralIndex(img_path)
+
+    output_test_file = "test_output.tif"
+    index.write_mask(output_test_file, threshold=0.65, out_proj="EPSG:4326")
+
+    with rasterio.open(output_test_file) as src:
+        src_meta = src.meta.copy()
+        output_mask_test = src.read(1)
+
+    np.testing.assert_array_equal(ndvi_mask_0_65_reproject, output_mask_test)
+
+
+def test_output_projection():
+    img_path = _test_data_path / TEST_INPUT_GEOTIFF
+    index = SpectralIndex(img_path)
+
+    output_test_file = "test_output.tif"
+    index.write_mask(output_test_file, threshold=0.65, out_proj="EPSG:4326")
+
+    with rasterio.open(output_test_file) as src:
+        src_meta = src.meta.copy()
+
+    assert src_meta["crs"] == rasterio.crs.CRS.from_epsg(4326)

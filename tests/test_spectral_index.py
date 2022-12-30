@@ -15,6 +15,8 @@ logger = logging.getLogger(__name__)
 
 TEST_INPUT_GEOTIFF = "test_AnalyticMS_8b.tif"
 
+TEST_OUTPUT_GEOTIFF = "test_mask_ndvi_0_65.tif"
+
 _here = Path(os.path.abspath(os.path.dirname(__file__)))
 _test_data_path = _here / "data"
 
@@ -93,6 +95,20 @@ def test_file_constructor_values():
     np.testing.assert_array_almost_equal(index.values, ndvi_values_test)
 
 
+def test_file_constructor_invalid_type():
+    img_path = _test_data_path / TEST_INPUT_GEOTIFF
+
+    with pytest.raises(Exception) as e_info:
+        index = SpectralIndex(img_path, index_type="invalid")
+
+
+def test_file_constructor_invalid_geotiff():
+    img_path = _test_data_path / TEST_OUTPUT_GEOTIFF
+
+    with pytest.raises(Exception) as e_info:
+        index = SpectralIndex(img_path)
+
+
 def test_mask_065():
     img_path = _test_data_path / TEST_INPUT_GEOTIFF
     index = SpectralIndex(img_path)
@@ -115,7 +131,7 @@ def test_write_mask():
     index.write_mask(output_test_file, threshold=0.65, out_proj="EPSG:4326")
 
     with rasterio.open(output_test_file) as src:
-        src_meta = src.meta.copy()
+
         output_mask_test = src.read(1)
 
     np.testing.assert_array_equal(ndvi_mask_0_65_reproject, output_mask_test)
@@ -129,6 +145,38 @@ def test_output_projection():
     index.write_mask(output_test_file, threshold=0.65, out_proj="EPSG:4326")
 
     with rasterio.open(output_test_file) as src:
+        src_meta = src.meta.copy()
+
+    assert src_meta["crs"] == rasterio.crs.CRS.from_epsg(4326)
+
+
+def test_create_mask_file():
+    img_path = _test_data_path / TEST_INPUT_GEOTIFF
+    output_test_file = "test_output.tif"
+    out_proj = "EPSG:4326"
+
+    SpectralIndex.create_mask_file(
+        img_path, output_test_file, threshold=0.65, out_proj=out_proj
+    )
+
+    with rasterio.open(output_test_file) as src:
+
+        output_mask_test = src.read(1)
+
+    np.testing.assert_array_equal(ndvi_mask_0_65_reproject, output_mask_test)
+
+
+def test_create_mask_file_crs():
+    img_path = _test_data_path / TEST_INPUT_GEOTIFF
+    output_test_file = "test_output.tif"
+    out_proj = "EPSG:4326"
+
+    SpectralIndex.create_mask_file(
+        img_path, output_test_file, threshold=0.65, out_proj=out_proj
+    )
+
+    with rasterio.open(output_test_file) as src:
+
         src_meta = src.meta.copy()
 
     assert src_meta["crs"] == rasterio.crs.CRS.from_epsg(4326)

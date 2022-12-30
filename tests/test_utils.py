@@ -12,6 +12,7 @@ from fieldfinder.utils import calculate_ndvi, is_valid_geotiff
 logger = logging.getLogger(__name__)
 
 TEST_INPUT_GEOTIFF = "test_AnalyticMS_8b.tif"
+TEST_OUTPUT_GEOTIFF = "test_mask_ndvi_0_65.tif"
 
 _here = Path(os.path.abspath(os.path.dirname(__file__)))
 _test_data_path = _here / "data"
@@ -63,3 +64,10 @@ def test_calculate_nan_ndvi():
 def test_is_valid_geotiff():
     img_path = _test_data_path / TEST_INPUT_GEOTIFF
     assert is_valid_geotiff(img_path)
+
+
+def test_invalid_geotiff():
+    img_path = _test_data_path / TEST_OUTPUT_GEOTIFF
+
+    with pytest.raises(Exception) as e_info:
+        index = is_valid_geotiff(img_path)

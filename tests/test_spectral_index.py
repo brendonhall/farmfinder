@@ -48,6 +48,26 @@ ndvi_values_test = np.array(
     ]
 )
 
+ndvi_mask_0_65_test = np.array(
+    [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+    ]
+)
+
+ndvi_mask_0_38_test = np.array(
+    [
+        [0, 0, 0, 0, 255],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 255, 255, 255, 255],
+        [0, 255, 255, 255, 255],
+    ]
+)
+
 
 def test_file_constructor_type():
     img_path = _test_data_path / TEST_INPUT_GEOTIFF
@@ -59,3 +79,17 @@ def test_file_constructor_values():
     img_path = _test_data_path / TEST_INPUT_GEOTIFF
     index = SpectralIndex(img_path)
     np.testing.assert_array_almost_equal(index.values, ndvi_values_test)
+
+
+def test_mask_065():
+    img_path = _test_data_path / TEST_INPUT_GEOTIFF
+    index = SpectralIndex(img_path)
+    mask = index.get_mask(threshold=0.65)
+    np.testing.assert_array_equal(mask, ndvi_mask_0_65_test)
+
+
+def test_mask_036():
+    img_path = _test_data_path / TEST_INPUT_GEOTIFF
+    index = SpectralIndex(img_path)
+    mask = index.get_mask(threshold=0.38)
+    np.testing.assert_array_equal(mask, ndvi_mask_0_38_test)

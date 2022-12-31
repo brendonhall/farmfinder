@@ -16,14 +16,14 @@ and `fieldfinder` can be easily expanded to accomodate these.
     pip install fieldfinder
 
 ## Quickstart
-`fieldfinder` is designed to calculate a spectral index (such as NDVI) from an 8-band PlanetScope AnalyticMS image, and output a raster mask that indicates where the mask exceeds a given threshold.  This can be done in a single line:
+`fieldfinder` is designed to calculate a spectral index (such as NDVI) from an 8-band PlanetScope AnalyticMS image, and output a raster mask that indicates where the mask exceeds a given threshold.  The following example demonstrates how to create an NVDI spectral index from an 8-band PlanetScope image, and output a mask file with values of 255 where NDVI > 0.65, and zero otherwise.  The output file is reprojected to lat/long (EPSG:4326) coordinates.
 
 ```python
-    from fieldfinder import SpectralIndex
+from fieldfinder import SpectralIndex
 
 SpectralIndex.create_mask_file(
     filename = 'example_AnalyticMS_8b.tif',
-    output_file = '../data/test_mask_ndvi_0_65_simple_test.tif',
+    output_file = 'example_NDVI_mask.tif',
     threshold=0.65,
     out_proj = 'EPSG:4326',
 )

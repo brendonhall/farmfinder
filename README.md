@@ -13,6 +13,8 @@ and `fieldfinder` can be easily expanded to accomodate these.
 
 ## Installation
 
+    pip install fieldfinder
+
 ## Quickstart
 
 ### Coding Task

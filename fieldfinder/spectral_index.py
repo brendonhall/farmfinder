@@ -68,7 +68,7 @@ class SpectralIndex:
         may be appropriate for an analysis of a single image. If analysis
         across a series of images is to be performed, these values should be
         converted to TOA reflectance using coefficients in the metadata that
-        accompanies the TIF files.
+        normally accompanies Planetscope GeoTiff files.
 
         :param src_filename: filename of the source image.
         :type dst_filename: str

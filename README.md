@@ -5,7 +5,7 @@
 
 Fieldfinder is a Python module for detecting agricultural development in 8-band PlanetScope images.  Information about land cover can be extracted from the different wavelength bands in a multispectral image.  Spectral Indices are combinations and ratios of the different bands, and can be used as features to identify land coverage.  A common index for identifying vegetation is the normalized difference vegetation index (NDVI).  The measure scales with the presence of live, green vegetation.  The formula for NDVI is:
 $$NDVI = \frac{NIR - R}{NIR + R}$$
-NDVI is the ratio of the difference of the red and infrared radiances over their sum as a means to adjust for or “normalize” the effects of the solar zenith angle.  Live green plants appear relatively dark in the photosynthetically active radiation (PAR) band and relatively bright in the near-infrared.  Thus high values of NDVI would indicate dense vegetation (ie: agriculture).
+NDVI is the ratio of the difference of the red (R) and near-infrared (NIR) radiances over their sum as a means to adjust for or “normalize” the effects of the solar zenith angle.  Live green plants appear relatively dark in the photosynthetically active radiation (PAR) band and relatively bright in the near-infrared.  Thus high values of NDVI would indicate dense vegetation (ie: agriculture).
 
 **Note:** There are many spectral indices besides NDVI ([Agapiou 2012](https://static1.1.sqspcdn.com/static/f/891472/21277561/1355603890193/Agapiou_et_al._2012.pdf)),
 and `fieldfinder` can be easily expanded to accomodate these.

@@ -1,5 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,linux,emacs,visualstudiocode,python,jupyternotebooks,images
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,emacs,visualstudiocode,python,jupyternotebooks,images
+todo.md
 .vscode
 ### Emacs ###
 # -*- mode: gitignore; -*-

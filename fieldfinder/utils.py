@@ -1,6 +1,6 @@
 """
 ***************************************************************************
-    constants.py
+    utils.py
     ---------------------
     Date                 : December 2022
     Author                : Brendon Hall
@@ -8,6 +8,8 @@
 Utility and helper functions for field finder module.
 ***************************************************************************
 """
+__author__ = "Brendon Hall"
+__date__ = "December 2022"
 
 import numpy as np
 

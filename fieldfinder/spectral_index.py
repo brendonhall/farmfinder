@@ -105,13 +105,13 @@ class SpectralIndex:
         :rtype: np.ndarry
         """
 
-        min_value = self.values.min()
-        max_value = self.values.max()
+        min_value = np.nanmin(self.values)
+        max_value = np.nanmax(self.values)
 
         if threshold < min_value or threshold > max_value:
             warnings.warn(
-                f"Threshold value of {threshold} is outside the range of the \
-                  index values."
+                f"Threshold value of {threshold} is outside the range of the"
+                " index values [{min_value} to {max_value}]."
             )
 
         masked_index = np.where(self.values >= threshold, 255, 0)
@@ -140,7 +140,7 @@ class SpectralIndex:
         dst_meta = self.src_meta.copy()
 
         masked_index = self.get_mask(threshold)
-        print(f"out_proj: {out_proj}")
+
         if out_proj:
             transform, width, height = calculate_default_transform(
                 self.src_meta["crs"],

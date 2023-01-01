@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,emacs,visualstudiocode,python,jupyternotebooks,images
 todo.md
 .vscode
+.pypirc
 ### Emacs ###
 # -*- mode: gitignore; -*-
 *~

@@ -1,5 +1,6 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/brendonhall/fieldfinder)
 [![Code Coverage](https://img.shields.io/codecov/c/github/brendonhall/fieldfinder)](https://codecov.io/github/brendonhall/fieldfinder)
+[![Pypi version](https://img.shields.io/pypi/v/fieldfinder)](https://pypi.org/project/fieldfinder/)
 
 # FieldFinder
 
@@ -14,11 +15,12 @@ and `fieldfinder` can be easily expanded to accomodate these.
 Planet Labs' analytic data products are [reported in units of radiance](https://notebook.community/planetlabs/notebooks/jupyter-notebooks/toar/toar_planetscope): $W*m^{-2}*sr^{-1}$.  This quantifies the amount of light captured over a given spot on the ground.  This depends on the amount and frequencies of light that are reflected from the surface, but also on satellite altitude, time of day, time of year and individual satellite characteristics.  To compare spectral indices across many images, radiance values should be converted to Top of Atmosphere (TOA) reflectance to provide an `apples-to-apples` comparison 
 
 ## Installation
+The easiest way to install `fieldfinder` is using `pip`:
 
     pip install fieldfinder
 
 ## Quickstart
-`fieldfinder` is designed to calculate a spectral index (such as NDVI) from an 8-band PlanetScope AnalyticMS image, and output a raster mask that indicates where the mask exceeds a given threshold.  The following example demonstrates how to create an NVDI spectral index from an 8-band PlanetScope image, and output a mask file with values of 255 where NDVI > 0.65, and zero otherwise.  The output file is reprojected to lat/long (EPSG:4326) coordinates.
+`fieldfinder` is designed to calculate a spectral index (such as NDVI) from an 8-band PlanetScope AnalyticMS image, and output a raster mask that indicates where the mask exceeds a given threshold.  This can be used to indicate regions with heavy vegetation, such as agricultural fields.  The following example demonstrates how to create an NVDI spectral index from an 8-band PlanetScope image, and output a mask file with values of 255 where NDVI > 0.65, and zero otherwise.  The output file is reprojected to lat/long (EPSG:4326) coordinates.
 
 ```python
 from fieldfinder import SpectralIndex

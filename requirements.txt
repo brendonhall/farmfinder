@@ -1,2 +1,2 @@
-numpy
-rasterio
+numpy>=1.10
+rasterio>=1.3

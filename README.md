@@ -1,5 +1,5 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/brendonhall/fieldfinder)
-![Build Status](https://github.com/brendonhall/fieldfinder/workflows/python-package.yml/badge.svg)
+![Build Status](https://github.com/brendonhall/fieldfinder/actions/workflows/python-package.yml/badge.svg)
 [![Code Coverage](https://img.shields.io/codecov/c/github/brendonhall/fieldfinder)](https://codecov.io/github/brendonhall/fieldfinder)
 [![Pypi version](https://img.shields.io/pypi/v/fieldfinder)](https://pypi.org/project/fieldfinder/)
 

@@ -120,6 +120,8 @@ flycheck_*.el
 *.3dm
 *.max
 
+!images/example.png
+
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/

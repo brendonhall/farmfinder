@@ -42,4 +42,4 @@ SpectralIndex.create_mask_file(
 For a more detailed tutorial on using `fieldfinder` to calculate a NDVI indicator for agricultural land use based on 
 an 8-band PlanetScope image, see the [tutorial notebook](examples/NDVI_example.ipynb).
 
-![example image](./images/example.png)
+![example image](./images/example.jpg)

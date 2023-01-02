@@ -182,3 +182,16 @@ def test_create_mask_file_crs():
         src_meta = src.meta.copy()
 
     assert src_meta["crs"] == rasterio.crs.CRS.from_epsg(4326)
+
+
+def test_create_mask_file_same_crs():
+    img_path = _test_data_path / TEST_INPUT_GEOTIFF
+    output_test_file = "test_output.tif"
+
+    SpectralIndex.create_mask_file(img_path, output_test_file, threshold=0.65)
+
+    with rasterio.open(output_test_file) as src:
+
+        src_meta = src.meta.copy()
+
+    assert src_meta["crs"] == rasterio.crs.CRS.from_epsg(32615)

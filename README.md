@@ -1,4 +1,5 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/brendonhall/fieldfinder)
+![Build Status](https://github.com/brendonhall/fieldfinder/workflows/python-package/badge.svg)
 [![Code Coverage](https://img.shields.io/codecov/c/github/brendonhall/fieldfinder)](https://codecov.io/github/brendonhall/fieldfinder)
 [![Pypi version](https://img.shields.io/pypi/v/fieldfinder)](https://pypi.org/project/fieldfinder/)
 
@@ -19,6 +20,10 @@ The easiest way to install `fieldfinder` is using `pip`:
 
     pip install fieldfinder
 
+You can also install `fieldfinder` from source.  Clone the `fieldfinder` repo.  Go into the `fieldfinder` directory and run:
+
+    pip install -e .
+
 ## Quickstart
 `fieldfinder` is designed to calculate a spectral index (such as NDVI) from an 8-band PlanetScope AnalyticMS image, and output a raster mask that indicates where the mask exceeds a given threshold.  This can be used to indicate regions with heavy vegetation, such as agricultural fields.  The following example demonstrates how to create an NVDI spectral index from an 8-band PlanetScope image, and output a mask file with values of 255 where NDVI > 0.65, and zero otherwise.  The output file is reprojected to lat/long (EPSG:4326) coordinates.
 
@@ -33,3 +38,5 @@ SpectralIndex.create_mask_file(
     index_type = 'ndvi'
 )
 ```
+
+![example image](./images/example.png)

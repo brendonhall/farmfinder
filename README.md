@@ -1,5 +1,5 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/brendonhall/fieldfinder)
-![Build Status](https://github.com/brendonhall/fieldfinder/workflows/python-package/badge.svg)
+![Build Status](https://github.com/brendonhall/fieldfinder/workflows/python-package.yml/badge.svg)
 [![Code Coverage](https://img.shields.io/codecov/c/github/brendonhall/fieldfinder)](https://codecov.io/github/brendonhall/fieldfinder)
 [![Pypi version](https://img.shields.io/pypi/v/fieldfinder)](https://pypi.org/project/fieldfinder/)
 
@@ -38,5 +38,8 @@ SpectralIndex.create_mask_file(
     index_type = 'ndvi'
 )
 ```
+
+For a more detailed tutorial on using `fieldfinder` to calculate a NDVI indicator for agricultural land use based on 
+an 8-band PlanetScope image, see the [tutorial notebook](examples/NDVI_example.ipynb).
 
 ![example image](./images/example.png)

@@ -3,6 +3,8 @@
 todo.md
 .vscode
 .pypirc
+
+fieldfinder.egg-info
 ### Emacs ###
 # -*- mode: gitignore; -*-
 *~
